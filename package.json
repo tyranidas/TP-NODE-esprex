@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cross-env NODE_ENV=production node ./bin/www",
+    "dev": "cross-env NODE_ENV=development nodemon ./bin/www"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/tyranidas/TP-NODE-esprex/issues"
   },
-  "homepage": "https://github.com/tyranidas/TP-NODE-esprex#readme"
+  "homepage": "https://github.com/tyranidas/TP-NODE-esprex#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "cross-env": "^7.0.3"
+  }
 }

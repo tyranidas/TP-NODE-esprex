@@ -1,0 +1,19 @@
+
+const http = require('http');
+const https = require('https');
+// Récupération des variables d'environnement
+// Les ports http et https
+// Et les contenus du certificat TLS et de la clé privée
+const {port, tls:{cert, key}} = require(`../environment/env.${process.env.NODE_ENV}.js`)
+
+http
+  .createServer((req, res) => {
+    res.end('HTTP');
+  })
+  .listen(port.http);
+
+https
+  .createServer({cert, key},(req, res) => {
+    res.end('HTTPS');
+  })
+  .listen(port.https);
