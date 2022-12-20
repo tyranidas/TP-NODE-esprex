@@ -1,4 +1,6 @@
 node_modules
-ssl/*
-!ssl/.getkeep
-envrionment/*
+tls/*
+!tls/.getkeep
+environment/*
+!environment/env.development.js~
+!environment/env.production.js~
