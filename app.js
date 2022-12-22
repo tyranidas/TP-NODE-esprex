@@ -1,23 +1,17 @@
-const esprex = require('./core/esprex.js');
-const app = esprex();
+const express = require('express');
+const {resolve} = require('path');
+const app = express();
 
+const router = require('./routing/router.js');
 
+app.use(express.static(resolve('public')));
 
+  
+app.get('/users', (req, res) => {
+    const data = require('./database/data.json');
+    res.json({ users : data.users});
+  });
 
-app.get('/home', (req, res) => {
-    res.end('Home Page');
-});
+  module.exports = app;
 
-app.get('/contact', (req, res) => {
-    res.end('Contact Page');
-});
-
-app.get('/services', (req, res) => {
-    res.end('Services Page');
-});
-app.post('/home', (req, res) => {
-    res.end('Home Page POST');
-});
-
-
-module.exports = app;
+  
