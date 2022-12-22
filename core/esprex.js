@@ -1,44 +1,45 @@
 
 
 const esprexApp = (req, res) => {
-    console.log(esprexApp.router.routes)
-    switch (esprexApp.router.routes){
-        case 'get':
-            if (esprexApp.router.routes.get[req.url]){
-                esprexApp.router.routes.get[req.url](req, res);
-               }
-            break;
-        case 'post':
-            if (esprexApp.router.routes.post[req.url]){
-             esprexApp.router.routes.post[req.url](req, res);
-            }
-            break;
-        default :
-        res.end('error');
-    }
+  const {router: {routes}} = esprexApp;
+  const activeRoute = routes[req.url];
+  if (activeRoute && activeRoute.has(req.method)) {
+    activeRoute.get(req.method)(req,res);
+  } 
+  else {
+    res.end('error');
   }
+}
+  
 
-
-
-esprexApp.get = (route, controller) => {
- //    esprexApp.router.routes[route].set('POST',controller);
-   }
-esprexApp.post = (route, controller) => {
-    esprexApp.router.routes[route].set('POST',controller);
-   }
-
-esprexApp.router = { routes: {
-    '/home': new Map([
-      
-      ['PUT', () => {}],
-      ['PATCH', () => {}],
-      ['DELETE', () => {}],
-    ]),
-    '/contact': new Map([
-      ['GET', () => {}],
-      ['POST', () => {}],
-    ]),
-  }};
+  esprexApp.all = function(routeName, controller, method) {
+    const route = esprexApp.router.routes[routeName];
+    if (!route) {
+      esprexApp.router.routes[routeName] = new Map([
+        [ method, controller ]
+      ]);
+    }
+    else {
+      route.set(method, controller);
+    } 
+  };
+  
+  esprexApp.get = function(routeName, controller) {
+    esprexApp.all(routeName, controller, 'GET');
+  };
+  esprexApp.post = function(routeName, controller) {
+    esprexApp.all(routeName, controller, 'POST');
+  };
+  esprexApp.put = function(routeName, controller) {
+    esprexApp.all(routeName, controller, 'PUT');
+  };
+  esprexApp.patch = function(routeName, controller) {
+    esprexApp.all(routeName, controller, 'PATCH');
+  };
+  esprexApp.delete = function(routeName, controller) {
+    esprexApp.all(routeName, controller, 'DELETE');
+  };
+esprexApp.router = { routes: {}};
   
 
 module.exports = () => esprexApp ;
