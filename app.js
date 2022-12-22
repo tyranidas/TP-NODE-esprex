@@ -2,16 +2,16 @@ const express = require('express');
 const {resolve} = require('path');
 const app = express();
 
-const router = require('./routing/router.js');
+const appRoutes = require('./routing/app.routes');
+const appApiRoutes = require('./routing/api-users.routes');
 
-app.use(express.static(resolve('public')));
+app.use(express.static(resolve('public'), {index: false}));
+app.use(appApiRoutes);
+app.use(appRoutes);
 
   
-app.get('/users', (req, res) => {
-    const data = require('./database/data.json');
-    res.json({ users : data.users});
-  });
 
-  module.exports = app;
+
+module.exports = app;
 
   
