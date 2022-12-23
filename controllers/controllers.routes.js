@@ -10,7 +10,7 @@ const contact = (req, res) => {
     };
 
 const services = (req, res) => {
-      res.sendFile(resolve('public', 'contact.html'));
+      res.sendFile(resolve('public', 'services.html'));
     };
 
 const def = (req, res) => {

@@ -4,8 +4,8 @@ const app = express();
 
 const index = require('./routing/index');
 
-app.use(express.static(resolve('public'), {index: false}));
-app.use(index);
+app.use(express.static(resolve('public'), {index: false}))
+.use(index);
 
 
   
