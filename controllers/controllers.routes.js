@@ -13,8 +13,10 @@ const services = (req, res) => {
       res.sendFile(resolve('public', 'services.html'));
     };
 
-const def = (req, res) => {
-    res.sendFile(resolve('public', 'index.html'));
+const users = (req, res) => {
+    const data = require('.././database/data.json');
+    module.exports = data;
+    res.sendFile(resolve('public', 'users.html'));
     };
 
 
@@ -22,5 +24,5 @@ module.exports = {
     home,
     contact,
     services,
-    def
+    users
 }
