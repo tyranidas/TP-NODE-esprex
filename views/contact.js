@@ -1,3 +1,5 @@
+module.exports = `
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,8 +19,8 @@
         </ul>
     </nav>
     <div>
-        <p>SERVICES</p>
+        <p>CONTACT</p>
     </div>
     <script src="js/script.js"></script>
 </body>
-</html>
+</html>`;

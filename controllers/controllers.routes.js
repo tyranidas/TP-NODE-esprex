@@ -2,21 +2,19 @@
 const {resolve} = require('path');
 
 const home = (req, res) => {
-        res.sendFile(resolve('public', 'index.html'));
+    res.send(require('../views/index'));
     };
 
 const contact = (req, res) => {
-        res.sendFile(resolve('public', 'contact.html'));
+    res.send(require('../views/contact'));
     };
 
 const services = (req, res) => {
-      res.sendFile(resolve('public', 'services.html'));
+    res.send(require('../views/services'));
     };
 
 const users = (req, res) => {
-    const data = require('.././database/data.json');
-    module.exports = data;
-    res.sendFile(resolve('public', 'users.html'));
+    res.send(require('../views/users'));
     };
 
 
