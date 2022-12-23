@@ -1,9 +1,7 @@
 const routerApi = require('express').Router();
+const {userApi} = require('../controllers/controllers.api');
 
-routerApi.get('/users', (req, res) => {
-    const data = require('.././database/data.json');
-    res.json( {users : data.users});
-});
+routerApi.get('/users', userApi);
 
 module.exports = routerApi;
 
